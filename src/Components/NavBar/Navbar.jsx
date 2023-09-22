@@ -1,59 +1,43 @@
 import './Navbar.scss'
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useAuth } from '../../Utils/AuthContext';
+import { Sling as Hamburger } from 'hamburger-react'
+import { useState } from 'react';
+import { GiLightningHelix } from 'react-icons/gi';
 
 const NavbarMenu = () => {
   const {user, handleLogout} = useAuth()
+  const [isOpen, setOpen] = useState(null)
+
   return (
-    <>
-      {['sm'].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
-          <Container fluid>
-            <Navbar.Brand href="#">InstaSolv DEX</Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              
-              <Offcanvas.Body>
-              {user ? <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
-                  <NavDropdown
-                    title="Dropdown"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Something else here
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </Nav> : null}
-                
-                {!user? <Button>Login</Button> : <Button onClick={handleLogout}>Logout</Button>}
-                
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-      ))}
-    </>
+    <div>
+    <div className='navbar'>
+      <div className='logo'><h6>This is my company logo</h6></div>
+      <div className='links'><h6>These are my links</h6></div>
+      <div className='wallet'><h6>Wallet</h6></div>
+      <div className='logout'><h6>Logout</h6></div>
+      <div className='support-settings'><h6>support & Settings</h6></div>
+    </div>
+    <div className='mobile-navbar'>
+      <div className='logo-mobile'>
+        <GiLightningHelix className='logo'/><span className='appname'>InstaSolv Dex</span>
+      </div>
+      <div><Hamburger size={20} toggled={isOpen} toggle={setOpen}/></div>
+    </div>
+    <div className='toggle-menu'>
+      <div className={isOpen === null? null: isOpen ? 'menu-container' : 'close-menu-container' }>
+        <div className='mob-link'>
+          <div><h3>Profile</h3></div>
+          <div><h3>Statistics</h3></div>
+          <div><h3>Settings</h3></div>
+        </div>
+        <div className='mob-wallet-support'>
+          <div><h3>Wallet</h3></div>
+          <div><h3>Support</h3></div>
+        </div>
+        </div>
+      </div>
+    
+    </div>
   )
 }
 

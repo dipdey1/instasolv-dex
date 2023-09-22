@@ -46,7 +46,7 @@ const Register = () => {
         <div className='input-container'>
         <label htmlFor="phone">Enter your phone</label>
         <input type='text' autoFocus id='phone' name='phone' value={registerDetails.phone} onChange={handleRegisterDetails} autoComplete='on' required 
-       maxLength={15} placeholder='+919674******'/>
+       maxLength={15} placeholder='+919876******'/>
         </div>
         <div className='input-container'>
         <label htmlFor="email">Enter your email</label>

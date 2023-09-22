@@ -1,0 +1,157 @@
+ .navbar{
+    background-color: #f4db2a;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    position: sticky;
+    padding-top: 0%;
+    
+    .logo{
+        background-color: azure;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .links{
+        flex: 6;
+        background-color: aqua;
+    }
+    .wallet{
+        flex: 2;
+        background-color: beige;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .logout{
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: bisque;
+    }
+    .support-settings{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: aliceblue;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .navbar{
+        display: none;
+    }
+}
+.mobile-navbar{
+    background-color: #f4db2a;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    top: 0%;
+    position: sticky;
+    align-items: center;
+    justify-content: space-between;    
+    .logo-mobile{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .logo{
+        padding-left: 20px;
+        font-size: 40px;
+        color: #1b1c1e;
+        }
+        .appname{
+            padding-left: 10px;
+            color: #1b1c1e;
+            font-size: 15px;
+            font-weight: 600;
+        }
+    }
+
+}
+
+@media screen and (min-width: 426px){
+    .mobile-navbar{
+        display: none;
+    }
+}
+.toggle-menu{
+    .menu-container{
+        position: relative;
+        height: 50vh;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        background-color: #f4db2a;
+        -moz-animation-duration: 500ms;
+        -webkit-animation-duration: 500ms;
+        -moz-animation-name: opencontainer;
+        -webkit-animation-name: opencontainer;
+        -moz-animation-iteration-count: 1;
+        -webkit-animation-iteration-count: 1;
+        .mob-link{
+            display: flex;
+            width: 80%;
+            flex-direction: column;
+            align-items: center;
+            color: #1b1c1e;
+            gap: 10px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+            border-bottom: 1px solid gray;
+        }
+        .mob-wallet-support{
+            display: flex;
+            width: 80%;
+            flex-direction: column;
+            align-items: center;
+            color: #1b1c1e;
+            gap: 10px;
+            margin-top: 20px;
+            padding-bottom: 20px;
+
+            border-bottom: 1px solid gray;
+        }
+        
+    }
+    .close-menu-container{
+        position: relative;
+        height: 0;
+        background-color: #f4db2a;
+        -moz-animation-duration: 500ms;
+        -webkit-animation-duration: 500ms;
+        -moz-animation-name: closecontainer;
+        -webkit-animation-name: closecontainer;
+        -moz-animation-iteration-count: 1;
+        -webkit-animation-iteration-count: 1;
+        .mob-link{
+            display: none;
+        }
+        .mob-wallet-support{
+            display: none;
+        }
+    }
+}
+
+@-webkit-keyframes opencontainer  {
+    from {
+        height: 0vh;
+     }
+
+     to {
+        height: 50vh;
+     }
+}
+@-webkit-keyframes closecontainer  {
+    from {
+        height: 50vh;
+     }
+
+     to {
+        height: 0vh;
+     }
+}
