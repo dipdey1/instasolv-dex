@@ -40,7 +40,7 @@
     }
 }
 
-@media screen and (max-width: 425px){
+@media screen and (max-width: 550px){
     .navbar{
         display: none;
     }
@@ -74,7 +74,7 @@
 
 }
 
-@media screen and (min-width: 426px){
+@media screen and (min-width: 550px){
     .mobile-navbar{
         display: none;
     }
@@ -87,8 +87,8 @@
         flex-direction:column;
         align-items: center;
         background-color: #f4db2a;
-        -moz-animation-duration: 500ms;
-        -webkit-animation-duration: 500ms;
+        -moz-animation-duration: 200ms;
+        -webkit-animation-duration: 200ms;
         -moz-animation-name: opencontainer;
         -webkit-animation-name: opencontainer;
         -moz-animation-iteration-count: 1;
@@ -102,7 +102,7 @@
             gap: 10px;
             padding-bottom: 20px;
             margin-top: 20px;
-            border-bottom: 1px solid gray;
+            border-bottom: 1px solid #1b1c1e;
         }
         .mob-wallet-support{
             display: flex;
@@ -113,25 +113,63 @@
             gap: 10px;
             margin-top: 20px;
             padding-bottom: 20px;
-
-            border-bottom: 1px solid gray;
+            border-bottom: 1px solid #1b1c1e;
         }
-        
+        .signing-button-div{
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            button{
+                outline: none;
+                padding: 10px 100px;
+                background-color: #f4db2a;
+                color:#1b1c1e;
+                border: 1px solid #1b1c1e;
+                border-radius: 30px;
+                -moz-animation-duration: 200ms;
+                -webkit-animation-duration: 200ms;
+                -moz-animation-name: fadeIn;
+                -webkit-animation-name: fadeIn;
+                -moz-animation-iteration-count: 1;
+                -webkit-animation-iteration-count: 1;
+                &:focus{
+                    background-color: #1b1c1e;
+                    color:#f4db2a;
+                }
+                &:hover{
+                    background-color: #1b1c1e;
+                    color:#f4db2a;
+                }
+            }
+        } 
     }
     .close-menu-container{
         position: relative;
         height: 0;
         background-color: #f4db2a;
-        -moz-animation-duration: 500ms;
-        -webkit-animation-duration: 500ms;
-        -moz-animation-name: closecontainer;
-        -webkit-animation-name: closecontainer;
-        -moz-animation-iteration-count: 1;
-        -webkit-animation-iteration-count: 1;
+        animation: closecontainer ease 50ms;
+        -webkit-animation: closecontainer ease 50ms;
+        -moz-animation: closecontainer ease 50ms;
+        -o-animation: closecontainer ease 50ms;
+        -ms-animation: closecontainer ease 50ms;
         .mob-link{
             display: none;
+            border: none;
         }
         .mob-wallet-support{
+            display: none;
+            border: none;
+        }
+        .signing-button-div{
+            display: none;
+            .logout{
+                display: none;
+            }
+        }
+        h6{
             display: none;
         }
     }
@@ -154,4 +192,64 @@
      to {
         height: 0vh;
      }
+}
+@keyframes fadeIn  {
+    0% {
+        opacity: 0;
+     }
+     25% {
+        opacity: 0;
+     }
+     50% {
+        opacity: 0;
+     }
+     75% {
+        opacity: 0.5;
+     }
+
+     100% {
+        opacity: 1;
+     }
+}
+@-moz-keyframes fadeIn  {
+    0% {
+        opacity: 0;
+     }
+     25% {
+        opacity: 0;
+     }
+     50% {
+        opacity: 0;
+     }
+     75% {
+        opacity: 0.5;
+     }
+
+     100% {
+        opacity: 1;
+     }
+}
+@-webkit-keyframes fadeIn  {
+    0% {
+        opacity: 0;
+     }
+     25% {
+        opacity: 0;
+     }
+     50% {
+        opacity: 0;
+     }
+     75% {
+        opacity: 0.5;
+     }
+
+     100% {
+        opacity: 1;
+     }
+}
+
+@media screen and (min-width: 550px){
+    .toggle-menu{
+        display: none;
+    }
 }

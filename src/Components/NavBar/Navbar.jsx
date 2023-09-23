@@ -3,10 +3,11 @@ import { useAuth } from '../../Utils/AuthContext';
 import { Sling as Hamburger } from 'hamburger-react'
 import { useState } from 'react';
 import { GiLightningHelix } from 'react-icons/gi';
+import TailSpin from 'react-loading-icons/dist/esm/components/tail-spin'
 
-const NavbarMenu = () => {
-  const {user, handleLogout} = useAuth()
-  const [isOpen, setOpen] = useState(null)
+const NavbarMenu = ({routingStatusReal}) => {
+  const {user, handleLogout, buttonSpin, activeDexID, routingStatus, handleRoutingON, handleRoutingOFF} = useAuth()
+  const [isOpen, setOpen] = useState(false)
 
   return (
     <div>
@@ -24,16 +25,21 @@ const NavbarMenu = () => {
       <div><Hamburger size={20} toggled={isOpen} toggle={setOpen}/></div>
     </div>
     <div className='toggle-menu'>
-      <div className={isOpen === null? null: isOpen ? 'menu-container' : 'close-menu-container' }>
+      {routingStatus ? <button onClick={(e) => handleRoutingOFF(e,user.$id)}>Turn Routing Off</button> : <button onClick={(e) =>handleRoutingON(e,user.$id)}>Turn Routing On</button>}
+      <div className={isOpen ? 'menu-container' : 'close-menu-container' }>
         <div className='mob-link'>
           <div><h3>Profile</h3></div>
           <div><h3>Statistics</h3></div>
-          <div><h3>Settings</h3></div>
+          <div><h3>History</h3></div>
         </div>
         <div className='mob-wallet-support'>
           <div><h3>Wallet</h3></div>
-          <div><h3>Support</h3></div>
+          <div><h3>Settings & Support</h3></div>
         </div>
+        <div className='signing-button-div'>
+          {user? <button onClick={handleLogout} className='logout'>{buttonSpin? <TailSpin style={{height:'25px'}}/>: <span>Logout</span>}</button> : null} 
+        </div>
+        <h6 style={{textAlign:'center'}}>All right reserved.</h6>
         </div>
       </div>
     
