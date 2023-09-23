@@ -7,17 +7,43 @@
     padding-top: 0%;
     
     .logo{
-        background-color: azure;
-        flex: 1;
+        flex: 3.5;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 5px;
+        .lg-logo{
+            font-size: 3.5em;
+            margin: 0px 10px;
+        }
+        .lg-appname{
+            font-size: 1rem;
+            font-weight: 500;
+        }
     }
     .links{
-        flex: 6;
-        background-color: aqua;
+        margin-top: 5px;
+        flex: 5;
+        display: flex;
+        align-items: center;
+        .core-link{
+            .core-link-ds{
+                text-decoration: none;
+                padding: 5px 20px;
+                text-align: center;
+                border-radius: 15px;
+                color: #1b1c1e;
+                font-weight: 500;
+                &:hover{
+                    background-color: #1b1c1e;
+                    color: #f4db2a;
+
+                }
+            }
+        }
     }
     .wallet{
+        margin-top: 5px;
         flex: 2;
         background-color: beige;
         display: flex;
@@ -25,6 +51,7 @@
         justify-content: center;
     }
     .logout{
+        margin-top: 5px;
         flex: 2;
         display: flex;
         align-items: center;
@@ -32,6 +59,7 @@
         background-color: bisque;
     }
     .support-settings{
+        margin-top: 5px;
         flex: 1;
         display: flex;
         align-items: center;
@@ -40,7 +68,7 @@
     }
 }
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 550.99px){
     .navbar{
         display: none;
     }
@@ -49,7 +77,7 @@
     background-color: #f4db2a;
     display: flex;
     flex-direction: row;
-    height: 40px;
+    height: 50px;
     top: 0%;
     position: sticky;
     align-items: center;
@@ -61,7 +89,7 @@
         justify-content: flex-start;
         .logo{
         padding-left: 20px;
-        font-size: 40px;
+        font-size: 3.5em;
         color: #1b1c1e;
         }
         .appname{
@@ -71,10 +99,9 @@
             font-weight: 600;
         }
     }
-
 }
 
-@media screen and (min-width: 550px){
+@media screen and (min-width: 551px){
     .mobile-navbar{
         display: none;
     }
@@ -87,8 +114,8 @@
         flex-direction:column;
         align-items: center;
         background-color: #f4db2a;
-        -moz-animation-duration: 200ms;
-        -webkit-animation-duration: 200ms;
+        -moz-animation-duration: 500ms;
+        -webkit-animation-duration: 500ms;
         -moz-animation-name: opencontainer;
         -webkit-animation-name: opencontainer;
         -moz-animation-iteration-count: 1;
@@ -116,21 +143,23 @@
             border-bottom: 1px solid #1b1c1e;
         }
         .signing-button-div{
-            margin-top: 40px;
-            margin-bottom: 40px;
+            margin-top: 20px;
+            margin-bottom: 35px;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             button{
                 outline: none;
-                padding: 10px 100px;
+                height: 35px;
+                width: 200px;
                 background-color: #f4db2a;
                 color:#1b1c1e;
                 border: 1px solid #1b1c1e;
                 border-radius: 30px;
-                -moz-animation-duration: 200ms;
-                -webkit-animation-duration: 200ms;
+                font-weight: 500;
+                -moz-animation-duration: 500ms;
+                -webkit-animation-duration: 500ms;
                 -moz-animation-name: fadeIn;
                 -webkit-animation-name: fadeIn;
                 -moz-animation-iteration-count: 1;
@@ -144,17 +173,74 @@
                     color:#f4db2a;
                 }
             }
-        } 
+        }
+        .routing-div{
+            margin-top: 20px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .stop-routing{
+                outline: none;
+                height: 35px;
+                width: 200px;
+                background-color: #CC3636;
+                color:#1b1c1e;
+                border: 1px solid #1b1c1e;
+                border-radius: 30px;
+                font-weight: 500;
+                -moz-animation-duration: 500ms;
+                -webkit-animation-duration: 500ms;
+                -moz-animation-name: fadeIn;
+                -webkit-animation-name: fadeIn;
+                -moz-animation-iteration-count: 1;
+                -webkit-animation-iteration-count: 1;
+                &:focus{
+                    background-color: #f4db2a;
+                    color:#1b1c1e;
+                }
+                &:hover{
+                    background-color: #1b1c1e;
+                    color:#f4db2a;
+                }
+            }
+            .routing-on{
+                outline: none;
+                height: 35px;
+                width: 200px;
+                background-color: #1B6B93;
+                color:white;
+                border: 1px solid #1b1c1e;
+                border-radius: 30px;
+                font-weight: 500;
+                -moz-animation-duration: 500ms;
+                -webkit-animation-duration: 500ms;
+                -moz-animation-name: fadeIn;
+                -webkit-animation-name: fadeIn;
+                -moz-animation-iteration-count: 1;
+                -webkit-animation-iteration-count: 1;
+                &:focus{
+                    background-color: #f4db2a;
+                    color:#1b1c1e;
+                }
+                &:hover{
+                    background-color: #1b1c1e;
+                    color:#f4db2a;
+                    border: 1px solid #1b1c1e;
+                }
+            }
+        }
+
     }
     .close-menu-container{
         position: relative;
         height: 0;
         background-color: #f4db2a;
-        animation: closecontainer ease 50ms;
-        -webkit-animation: closecontainer ease 50ms;
-        -moz-animation: closecontainer ease 50ms;
-        -o-animation: closecontainer ease 50ms;
-        -ms-animation: closecontainer ease 50ms;
+        animation: closecontainer ease 200ms;
+        -webkit-animation: closecontainer ease 200ms;
+        -moz-animation: closecontainer ease 200ms;
+        -o-animation: closecontainer ease 200ms;
+        -ms-animation: closecontainer ease 200ms;
         .mob-link{
             display: none;
             border: none;
@@ -166,6 +252,15 @@
         .signing-button-div{
             display: none;
             .logout{
+                display: none;
+            }
+        }
+        .routing-div{
+            display: none;
+            .stop-routing{
+                display: none;
+            }
+            .routing-on{
                 display: none;
             }
         }
