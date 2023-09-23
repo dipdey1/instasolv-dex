@@ -16,11 +16,10 @@ const Home = () => {
     const unsubscribe = client_dex.subscribe(`databases.${DATABASE_ID_DEX}.collections.${ACTIVE_DEX_COLLECTION_ID}.documents.${activeDexID}`, response =>{
         if(response.events.includes("databases.*.collections.*.documents.*.update")){
               if(response.payload.routingStatus === true){
-                console.log()
-                setRoutingStatus(true)
-                setRoutingID(response.payload.doubtID)
+                console.log('Routing')
             }
         }
+        console.log(response);
     })
     return () => {
         unsubscribe()

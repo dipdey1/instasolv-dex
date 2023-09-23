@@ -26,8 +26,6 @@ export const AuthProvider = ({children}) => {
             setUser(accountDetails)
             let activeDexrouting = await database_dex.listDocuments(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID,[Query.equal('dexId', accountDetails.$id)])
             setActiveDexID(activeDexrouting.documents[0].$id)
-            console.log(activeDexrouting.documents[0].$id);
-            console.log(activeDexrouting.documents[0].routingStatus);
             setRoutingStatus(activeDexrouting.documents[0].routingStatus)
         } catch (error) {
             console.info(error.message)
@@ -125,7 +123,6 @@ export const AuthProvider = ({children}) => {
         e.preventDefault()
         let response = await database_dex.listDocuments(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID,[Query.equal('dexId', userID)])
         let dexDocumentID = response.documents[0].$id
-        console.log(dexDocumentID);
         let activeDex = await database_dex.updateDocument(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID,dexDocumentID, {routingStatus: false})
         setRoutingStatus(false)
     }
