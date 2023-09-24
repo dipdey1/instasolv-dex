@@ -7,7 +7,7 @@ const PrivateRoutes = () => {
 
   return (
     <>
-    {user ? <Outlet/> : <Navigate to='/login'/>}
+    {user && user.emailVerification === true ? <Outlet/> : user && user.emailVerification === false ? <Navigate to='/verifyemail'/> : <Navigate to='/login'/> }
     </>
   )
 }

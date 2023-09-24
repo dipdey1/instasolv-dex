@@ -2,7 +2,7 @@ import './Sidebar.scss'
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <div style={{color: 'black', backgroundColor: 'teal', height: '90vh'}}>Sidebar</div>
   )
 }
 

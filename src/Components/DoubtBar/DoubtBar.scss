@@ -1,6 +1,123 @@
-.test{
-    h1{
-        color: white
+.doubt-card{
+    height: 90vh;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .lg-flex{
+        height: 85vh;
+        width: 600px;
+        margin-top: 25px;
+        background-color: #EEEDED;
+        padding: 10px 10px;
+        border-radius: 8px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        .image{
+            img{
+                height: 400px;
+                width: 100%;
+                border-radius: 8px;
+                object-fit: center;
+            }
+        }
+        .info{
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .chapter-subject{
+                flex: 5;
+                display: flex;
+                flex-direction: column;
+                .chapter{
+                    color: #061330;
+                }
+                .subject-solution-type{
+                    .subject-name{
+                        font-size:13px;
+                        font-weight: 500;
+                        color: #16C79A;
+                    }
+                    .solution-type{
+                        font-size:13px;
+                        font-weight: 500;
+                        background-color: #FF6D60;
+                        color: #061330;
+                        margin-left: 10px;
+                        padding: 2px 10px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+            .accept-pass{
+                flex: 4;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                gap:10px;
+                .accept{
+                outline: none;
+                height: 40px;
+                width: 130px;
+                background: #16C79A;
+                color:#061330;
+                
+                border: none;
+                border-radius: 5px;
+                font-weight: 500;
+                margin-right: 15px;
+                &:hover{
+                background: #061330;
+                color:#16C79A;
+                transition: .5s ease-out;
+                }
+                }
+                .pass{
+                outline: none;
+                height: 40px;
+                width: 130px;
+                background: #FF6D60;
+                color:#061330;
+                border: none;
+                border-radius: 5px;
+                font-weight: 500;
+                border: none;
+                &:hover{
+                background: #E21818;
+                color:#061330;
+                transition: .5s ease-out;
+                }
+                }
+            }
+        }
+        .description{
+                display: flex;
+                flex-wrap: wrap;
+                width: 90%;
+                height: 25vh;
+            .description-text{
+                text-wrap: wrap;
+                color: #061330;
+            }
+        }
+
     }
-    
+}
+
+@media screen and (max-width: 791px){
+    .doubt-card{
+        display: none;
+    }
+}
+// @keyframes border-pulsate {
+//         0%   { border-color: #061330; }
+//         50%  { border-color: rgba(0, 255, 255, 0); }
+//         100% { border-color: #061330; }
+// }
+
+.show-text{
+    border:none;
+    text-decoration: underline;
+    color: #E21818;
 }

@@ -15,7 +15,6 @@ export const AuthProvider = ({children}) => {
     const [error, setError] = useState(null)
     const [activeDexID, setActiveDexID] = useState('')
     const [routingStatus, setRoutingStatus] = useState(null)
-    const [verification, setVerification] = useState(null)
     const navigate = useNavigate()
     useEffect(() => {
         getUserOnLoad()
