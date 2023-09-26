@@ -2,67 +2,93 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../Utils/AuthContext'
 import './DoubtBar.scss'
 import client_dex, { ACTIVE_DEX_COLLECTION_ID, DATABASE_ID_DEX } from '../../../appwriteConfigDex'
-import client_user, { DATABASE_ID_USER, DOUBT_COLLECTION_ID } from '../../../appwriteConfigUser'
+import client_user, { DATABASE_ID_USER, STORAGE_BUCKET_ID, USER_DOUBT_COLLECTION_ID, database_user, storage_user } from '../../../appwriteConfigUser'
 
 const DoubtBar = () => {
-    const {user,activeDexID,routingStatus} = useAuth()
-    const [routingID, setRoutingID] = useState('')
+    const {activeDexID, acceptDoubt, doubtIdOnLoad, inactivity} = useAuth()
+    const [routingID, setRoutingID] = useState(null)
     const [accepted, setAccepted] = useState(false)
     const [isFullTextVisible, setIsFullTextVisible] = useState(false);
-    const text = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem nulla fugit sapiente quaerat quo atque eum accusantium excepturi incidunt aperiam! Architecto veritatis dolores iste itaque autem quam animi saepe officia. Porro dolorum officia natus eos voluptates optio, eaque asperiores deserunt quae, quisquam veritatis magni aperiam fugit error eveniet nemo sit ducimus? Sapiente officiis, amet in nemo laudantium fugiat tempore nihil. A ab aperiam, molestias est impedit, repellat animi debitis adipisci cupiditate, aspernatur error officia unde ipsum aut officiis quasi accusantium voluptatum vitae sint. Earum fugiat dicta pariatur ipsum quaerat aperiam.'
+    const [doubt, setDoubt] = useState({
+      body: ''
+    })
+    const [doubtImage, setDoubtImage] = useState({
+      href:''
+    })
     const maxLength = 400
-    const truncatedText = isFullTextVisible ? text : text.slice(0, maxLength);
+    const truncatedText = isFullTextVisible ? doubt.body :  doubt.body.slice(0, maxLength);
+  
+  useEffect(() => {
+    if(doubtIdOnLoad !== null){
+      routingDoubt(doubtIdOnLoad)
+      setRoutingID(doubtIdOnLoad)
+    }
+  },[doubtIdOnLoad])
+  
 
   useEffect(() => {
       const unsubscribe = client_dex.subscribe(`databases.${DATABASE_ID_DEX}.collections.${ACTIVE_DEX_COLLECTION_ID}.documents.${activeDexID}`, response =>{
           if(response.events.includes("databases.*.collections.*.documents.*.update")){
                 if(response.payload.routingStatus === true){
+                  setAccepted(false)
                   setRoutingID(response.payload.doubtID)
-              }}})
+                  const doubtID = response.payload.doubtID
+                  routingDoubt(doubtID)
+              }else if(response.payload.routingStatus === false){
+                  inactivity()
+              }
+            }})
       return () => {unsubscribe()}
-  },[])
+  },[activeDexID])
 
   useEffect(() => {
-    const unsubscribe = client_user.subscribe(`databases.${DATABASE_ID_USER}.collections.${DOUBT_COLLECTION_ID}.documents.${routingID}`, response =>{
+    const unsubscribe = client_user.subscribe(`databases.${DATABASE_ID_USER}.collections.${USER_DOUBT_COLLECTION_ID}.documents.${routingID}`, response =>{
         if(response.events.includes("databases.*.collections.*.documents.*.update")){
               if(response.payload.status === 'accepted'){
               setAccepted(true)
             }
             
-          }})
+          }
+        })
     return () => {unsubscribe()}
-  },[])
+  },[routingID])
 
   const toggleFullText = () => {
     setIsFullTextVisible(!isFullTextVisible);
   };
 
+  const routingDoubt = async (doubtID) => {
+    try {
+      let response = await database_user.getDocument(DATABASE_ID_USER, USER_DOUBT_COLLECTION_ID, doubtID)
+      setDoubt(response)
+      let doubtImage = storage_user.getFilePreview(STORAGE_BUCKET_ID, response.pictureID)
+      setDoubtImage(doubtImage)
+    } catch (error) {
+      console.log(error.message);
+    } 
+}
+
+
   return (
     <>
-      {/* <div className='test'>
-        <h1 style={{ color: 'black', textAlign: 'center' }}>Doubt Bar Of {user.name}</h1>
-      </div>
-      <div>
-        {routingStatus ? <h3 style={{ textAlign: 'center' }}>You will receive doubts shortly...</h3> : <h3>You are currently not receiving doubts</h3>}
-      </div>
-      {routingID && !accepted ? <h1 style={{ color: 'black' }} >current routing Doubt ID: {routingID}</h1> : null} */}
+     {(routingID) && !accepted ? 
       <div className='doubt-card'>
         <div className='lg-flex'>
           <div className='image'>
-            <img src="https://blog.mystart.com/wp-content/uploads/shutterstock_124222435-e1521832609986.jpg" alt="" />
+            <img src={doubtImage.href} alt="" />
           </div>
           <div className='info'>
             <div className='chapter-subject'>
-                <div className='chapter'><h3>Chapter Name</h3></div>
-                <div className='subject-solution-type'><span className='subject-name'>Subject</span><span className='solution-type'>Live</span></div>
+                <div className='chapter'><h3>{doubt.chapter}</h3></div>
+                <div className='subject-solution-type'><span className='subject-name'>{doubt.subject}</span><span className='solution-type'>Live</span></div>
             </div>
             <div className='accept-pass'>
-                <div><button className='accept'>Accept</button></div>
+                <div><button className='accept' onClick={() => acceptDoubt(routingID, doubt)}>Accept</button></div>
                 <div><button className='pass'>Pass</button></div>
             </div>
           </div>
           <div className='description'>
-              <p className='description-text'>{truncatedText} {text.length > maxLength && (
+              <p className='description-text'>{truncatedText} {doubt.body.length > maxLength && (
               <button onClick={toggleFullText} className='show-text'>
               {isFullTextVisible ? 'Show Less' : 'Show More'}
               </button>
@@ -70,6 +96,7 @@ const DoubtBar = () => {
               </div>
         </div>
       </div>
+       : null}
     </>
   )
 }

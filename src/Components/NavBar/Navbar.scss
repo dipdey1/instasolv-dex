@@ -6,6 +6,7 @@
     padding-top: 0%;
     align-items: center;
     display: flex;
+    border-bottom: 1px solid gray;
     .logo{
         flex: 1.5;
         display: flex;
@@ -38,8 +39,9 @@
                 font-weight: 500;
                 &:hover{
                     background-color: white;
+                    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
                     color:rgb(5,11,26);
-
+                    transition: .5s ease-out;
                 }
             }
         }
@@ -61,10 +63,11 @@
                 background: #FF6D60;
                 color:white;
                 border: none;
-                border-radius: 5px;
+                border-radius: 30px;
                 font-weight: 500;
                 &:hover{
                 background: #E21818;
+                box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
                 transition: .5s ease-out;
                 }
             }
@@ -75,30 +78,49 @@
                 background: #19A7CE;
                 color:whitesmoke;
                 border: none;
-                border-radius: 5px;
+                border-radius: 30px;
                 font-weight: 500;
                 &:hover{
                 background: #146C94;
+                box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
                 transition: .5s ease-out;
                 }
             }
         }
         .logout{
-            margin-top: 5px;
-            flex: 1;
-            width: min-content;
             display: flex;
+            align-items: center;
             .logout-lg{
                 height: 42px;
                 width: 130px;
-                background-color: #061330;
-                color:whitesmoke;
-                border:none;
-                border-radius: 5px;
-                font-weight: 500;
-                &:hover{
-                background: gray;
+                background: #061330;
+                background: -moz-linear-gradient(90deg, #D8D9DA 0%, #D8D9DA  70%, #061330 71%, #061330 100%);
+                background: -webkit-linear-gradient(90deg, #D8D9DA  0%,#D8D9DA  70%,#061330 71%,#061330 100%);
+                background: linear-gradient(90deg, #D8D9DA  0%,#D8D9DA  70%,#061330 71%,#061330 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3232', endColorstr='#005dff',GradientType=1 );
                 color:#061330;
+                border:none;
+                border-radius: 30px;
+                font-weight: 500;
+                .logout-span{
+                    display: flex;
+                    height: 100%;
+                    align-items: center;
+                    .logout{
+                        height:100%;
+                        flex:4;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 13px;
+                    }
+                    .logout-icon{
+                        flex:1.8;
+                        margin-right: -4px;
+                        color: white;
+                    }
+                }
+                &:hover{
+                box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
                 transition: .5s ease-out;
                 }
             }
@@ -109,11 +131,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background: none;
             .settings{
                 font-size:40px;
                 color: #061330;
+                background: none;
                 &:hover{
-                    color: gray;
+                    color: #19A7CE;
                     transition: .5s ease-out;
                     cursor: pointer;
                 }

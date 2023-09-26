@@ -3,6 +3,7 @@ import { useAuth } from '../../Utils/AuthContext';
 import { Sling as Hamburger } from 'hamburger-react'
 import { useState } from 'react';
 import { GiLightningHelix } from 'react-icons/gi';
+import {FaPowerOff} from 'react-icons/fa6';
 import {IoSettings} from 'react-icons/io5';
 import TailSpin from 'react-loading-icons/dist/esm/components/tail-spin'
 import { Link } from 'react-router-dom';
@@ -26,7 +27,7 @@ const NavbarMenu = () => {
       {routingStatus ? <button className='stop-routing-lg' onClick={(e) => handleRoutingOFF(e,user.$id)}>Stop Doubts</button> : <button className='routing-on-lg' onClick={(e) =>handleRoutingON(e,user.$id)}>Start Doubts</button>}
       </div>
       <div className='logout'>
-      {user? <button onClick={handleLogout} className='logout-lg'>{buttonSpin? <TailSpin style={{height:'25px'}}/>: <span>Logout</span>}</button> : null}
+      {user? <button onClick={handleLogout} className='logout-lg'>{buttonSpin? <TailSpin style={{height:'25px'}}/>: <span className='logout-span'><span className='logout'>Logout</span><FaPowerOff className='logout-icon' size={20}/></span>}</button> : null}
       </div>
       <div className='support-settings'>
         <Link></Link><IoSettings className='settings'/>
