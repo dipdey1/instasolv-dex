@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <div className="body">
-      <NavbarMenu/>
+      <NavbarMenu className='navbar'/>
       <div className="dashboard">
         <div className='doubtBar'><DoubtBar/></div>
         <div  className='sidebar'><Sidebar/></div>
