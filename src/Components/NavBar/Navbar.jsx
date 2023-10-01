@@ -12,7 +12,6 @@ import {LightningChargeFill} from '@styled-icons/bootstrap/LightningChargeFill'
 import {PersonAccounts} from '@styled-icons/fluentui-system-filled/PersonAccounts'
 import {StatsBars} from '@styled-icons/icomoon/StatsBars'
 import {ClockHistory} from '@styled-icons/bootstrap/ClockHistory'
-import {Wallet2} from '@styled-icons/bootstrap/Wallet2'
 
 const NavbarMenu = () => {
   const {user, handleLogout, buttonSpin, routingStatus, handleRoutingON, handleRoutingOFF} = useAuth()

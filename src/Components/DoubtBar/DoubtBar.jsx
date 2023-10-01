@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../../Utils/AuthContext'
 import './DoubtBar.scss'
 import client_dex, { ACTIVE_DEX_COLLECTION_ID, DATABASE_ID_DEX } from '../../../appwriteConfigDex'
-import client_user, { DATABASE_ID_USER, STORAGE_BUCKET_ID, USER_DOUBT_COLLECTION_ID, database_user, storage_user } from '../../../appwriteConfigUser'
+import client_user, { DATABASE_ID_USER, STORAGE_BUCKET_ID, USER_DOUBTS_COLLECTION_ID, database_user, storage_user } from '../../../appwriteConfigUser'
 
 const DoubtBar = () => {
     const {activeDexID, acceptDoubt, doubtIdOnLoad, inactivity} = useAuth()
@@ -42,7 +42,7 @@ const DoubtBar = () => {
   },[activeDexID])
 
   useEffect(() => {
-    const unsubscribe = client_user.subscribe(`databases.${DATABASE_ID_USER}.collections.${USER_DOUBT_COLLECTION_ID}.documents.${routingID}`, response =>{
+    const unsubscribe = client_user.subscribe(`databases.${DATABASE_ID_USER}.collections.${USER_DOUBTS_COLLECTION_ID}.documents.${routingID}`, response =>{
         if(response.events.includes("databases.*.collections.*.documents.*.update")){
               if(response.payload.status === 'accepted'){
               setAccepted(true)
@@ -59,7 +59,7 @@ const DoubtBar = () => {
 
   const routingDoubt = async (doubtID) => {
     try {
-      let response = await database_user.getDocument(DATABASE_ID_USER, USER_DOUBT_COLLECTION_ID, doubtID)
+      let response = await database_user.getDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtID)
       setDoubt(response)
       let doubtImage = storage_user.getFilePreview(STORAGE_BUCKET_ID, response.pictureID)
       setDoubtImage(doubtImage)

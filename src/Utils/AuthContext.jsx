@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ACTIVE_DEX_COLLECTION_ID, DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID, USERTABLE_DEX_COLLECTION_ID, account_dex, database_dex, storage_dex } from "../../appwriteConfigDex";
+import { ACTIVE_DEX_COLLECTION_ID, DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID, USERTABLE_COLLECTION_ID, account_dex, database_dex, storage_dex } from "../../appwriteConfigDex";
 import { ID, Query } from "appwrite";
-import { DATABASE_ID_USER, STORAGE_BUCKET_ID, USER_DOUBT_COLLECTION_ID, account_user, database_user, storage_user } from "../../appwriteConfigUser";
+import { DATABASE_ID_USER, STORAGE_BUCKET_ID, USER_DOUBTS_COLLECTION_ID, database_user, storage_user } from "../../appwriteConfigUser";
 
 const AuthContext = createContext()
 
@@ -101,7 +101,7 @@ export const AuthProvider = ({children}) => {
                 onboardingStatus: false,
                 routingStatus: false, 
             }
-            await database_dex.createDocument(DATABASE_ID_DEX, USERTABLE_DEX_COLLECTION_ID, ID.unique(), dexObject)
+            await database_dex.createDocument(DATABASE_ID_DEX, USERTABLE_COLLECTION_ID, ID.unique(), dexObject)
             await database_dex.createDocument(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID, ID.unique(), activeDexObject)
             await account_dex.createEmailSession(registerDetails.email, registerDetails.password)
             await account_dex.createVerification('http://localhost:5173/home')
@@ -152,7 +152,7 @@ export const AuthProvider = ({children}) => {
             'dexEmail': user.email,
             'dexName': user.name}
         let updatePayload = {'solvingStatus': true}
-        await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBT_COLLECTION_ID, doubtId, acceptancePayload)
+        await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtId, acceptancePayload)
         await database_dex.updateDocument(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID, activeDexID, updatePayload)
         let response = await database_dex.createDocument(DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID, ID.unique(),dexDoubtPayload)
         let doubtImage = storage_user.getFilePreview(STORAGE_BUCKET_ID, response.pictureID)
@@ -185,7 +185,7 @@ export const AuthProvider = ({children}) => {
     const handleEndDoubt = async (doubtID, dexDocumentID) => {
         let responseOne = await database_dex.updateDocument(DATABASE_ID_DEX,DEX_DOUBTS_COLLECTION_ID, dexDocumentID, {status: 'Solved'})
         let responseTwo = await database_dex.updateDocument(DATABASE_ID_DEX,ACTIVE_DEX_COLLECTION_ID, activeDexID, {'solvingStatus' : false})
-        let responseThree = await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBT_COLLECTION_ID, doubtID, {status: 'Solved'})
+        let responseThree = await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtID, {status: 'Solved'})
         setOngoingDoubtObject(null)
     }   
 
