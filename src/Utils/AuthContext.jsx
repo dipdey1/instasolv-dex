@@ -154,6 +154,7 @@ export const AuthProvider = ({children}) => {
         let updatePayload = {'solvingStatus': true}
         await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtId, acceptancePayload)
         await database_dex.updateDocument(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID, activeDexID, updatePayload)
+
         let response = await database_dex.createDocument(DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID, ID.unique(),dexDoubtPayload)
         let doubtImage = storage_user.getFilePreview(STORAGE_BUCKET_ID, response.pictureID)
         const ongoingDoubtObject = {

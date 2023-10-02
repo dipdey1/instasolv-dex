@@ -5,7 +5,7 @@ import client_dex, { ACTIVE_DEX_COLLECTION_ID, DATABASE_ID_DEX } from '../../../
 import client_user, { DATABASE_ID_USER, STORAGE_BUCKET_ID, USER_DOUBTS_COLLECTION_ID, database_user, storage_user } from '../../../appwriteConfigUser'
 
 const DoubtBar = () => {
-    const {activeDexID, acceptDoubt, doubtIdOnLoad, inactivity} = useAuth()
+    const {activeDexID, acceptDoubt, doubtIdOnLoad} = useAuth()
     const [routingID, setRoutingID] = useState(null)
     const [accepted, setAccepted] = useState(false)
     const [isFullTextVisible, setIsFullTextVisible] = useState(false);
@@ -29,13 +29,11 @@ const DoubtBar = () => {
   useEffect(() => {
       const unsubscribe = client_dex.subscribe(`databases.${DATABASE_ID_DEX}.collections.${ACTIVE_DEX_COLLECTION_ID}.documents.${activeDexID}`, response =>{
           if(response.events.includes("databases.*.collections.*.documents.*.update")){
-                if(response.payload.routingStatus === true){
+                if(response.payload.routingStatus === true && response.payload.solvingStatus === false){
                   setAccepted(false)
                   setRoutingID(response.payload.doubtID)
                   const doubtID = response.payload.doubtID
                   routingDoubt(doubtID)
-              }else if(response.payload.routingStatus === false){
-                  inactivity()
               }
             }})
       return () => {unsubscribe()}
@@ -45,9 +43,11 @@ const DoubtBar = () => {
     const unsubscribe = client_user.subscribe(`databases.${DATABASE_ID_USER}.collections.${USER_DOUBTS_COLLECTION_ID}.documents.${routingID}`, response =>{
         if(response.events.includes("databases.*.collections.*.documents.*.update")){
               if(response.payload.status === 'accepted'){
+                console.log(
+                  routingID
+                );
               setAccepted(true)
             }
-            
           }
         })
     return () => {unsubscribe()}
