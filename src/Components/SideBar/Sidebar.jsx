@@ -44,7 +44,7 @@ const Sidebar = () => {
       <div className='active-doubt'>
         <div className='info'>
           <div className='doubtimg'>
-            <img src="https://th.bing.com/th/id/OIP.2sA_t9fLcvDFMqNfjWhEkAHaE8?pid=ImgDet&rs=1" alt="" />
+            <img className='doubtimage' src="https://th.bing.com/th/id/OIP.2sA_t9fLcvDFMqNfjWhEkAHaE8?pid=ImgDet&rs=1" alt="" />
           </div>
           <div className='doubt-info'>
             <div className='chapter'><span>chapter</span></div>
@@ -53,8 +53,8 @@ const Sidebar = () => {
           </div>
         </div>
         <div className='doubt-btn'>
-          <div className='btn-join'>Join</div>
-          <div className='btn-end'>End Doubt</div>
+          <div className='btn-join'><span>Join</span></div>
+          <div className='btn-end'><span>End Doubt</span></div>
         </div>
       </div>
     </div>
