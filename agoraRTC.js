@@ -1,6 +1,6 @@
 import AgoraRTC from "agora-rtc-sdk-ng";
 
-export const appID = '16413846c9704944983167509d540afc'
+export const appID = import.meta.env.VITE_APP_ID
 
 export const client = AgoraRTC.createClient({
     mode: 'rtc',
