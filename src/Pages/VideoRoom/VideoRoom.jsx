@@ -13,42 +13,6 @@ const VideoRoom = () => {
    const {zegoObject,handleEndDoubt,ongoingDoubtObject,agoraObject} = useDoubt()
 
 
-// const doubtRoomZEGO = async (element) => {
-//     const appID = 1558067743
-//     const serverSecret = 'e296b44d30779ff1a510e80a26f69cec'
-//     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, zegoObject.roomID,  user.$id,  zegoObject.username)
-//     const zc = ZegoUIKitPrebuilt.create(kitToken)
-//     zc.joinRoom(
-//         {
-//         container: element,
-//         maxUsers:2,
-//         scenario:{
-//             mode:ZegoUIKitPrebuilt.OneONoneCall
-//         },
-//         showPreJoinView: false,
-//         turnOnMicrophoneWhenJoining: false,
-//         turnOnCameraWhenJoining:false,
-//         useFrontFacingCamera: true,
-//         showLeavingView: false,
-//         onLeaveRoom: () => {
-//             handleEndDoubt(ongoingDoubtObject.info.doubtID ,ongoingDoubtObject.info.$id)
-//         },
-//     })
-// }
-
-// useEffect(() => {
-//   //   client.on('user-published', handleUserPublished)
-//   //   client.on('user-left', handleUserLeft)
-  
-//   //   client.join(appID, agoraObject.channelName, agoraObject.token, agoraObject.uid).then((uid) => 
-//   //    AgoraRTC.createMicrophoneAndCameraTracks()
-//   //   ).then(tracks => {
-//   //     const [audioTracks, videoTracks] = tracks
-//   //     client.publish(tracks)
-//   //   }
-//   //     )
-//   console.log(agoraObject);
-//   },[])
 const [videoCall, setVideoCall] = useState(true);
 
 const callbacks = {

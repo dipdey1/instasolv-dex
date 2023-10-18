@@ -66,11 +66,6 @@ export const DoubtProvider = (props) => {
         } catch (error) {
             console.log(error.message);
         }
-        // setZegoObject({
-        //     roomID: doubt.$id,
-        //     userID: user.$id,
-        //     username: user.name
-        // })
         } catch (error) {
             console.log(error.message);
         }
