@@ -1,8 +1,8 @@
 .primary-container{
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    width:100%;
     .left-container{
         flex:2;
         height: 100%;
@@ -13,29 +13,35 @@
     }
     .right-container{
         display: flex;
+        overflow-y: auto;
         justify-content: center;
         flex:8;
-        height:100%;
         background-color: #FFF;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-        h2{
-            color: #061330;
-            margin-top:40%;
-            padding-bottom: 20px;
+        .header{
+            padding-top: 30%;
+            text-align: center;
+            font-size: 30px;
+            span{
+                color: #061330;
+                margin-top:20%;
+                padding-bottom: 20px;
+            }
         }
+        
         .google-login{
             display: flex;
             justify-content: center;
             button{
                 margin: 10px 0px;
-                width: 300px;
+                width: 100%;
                 height: 45px;
                 outline: none;
                 border: 1px solid gainsboro;
                 border-radius: 30px;
                 background-color: white;
                 color: #061330;
-                font-size: 13px;
+                font-size: 12px;
                 font-weight: 600;
                 &:hover{
                     background-color: gainsboro;
@@ -45,29 +51,31 @@
                 }
             }
         }
-        
-        .input-container{
-            margin-top: 10px;
-            display: flex;
-            width: 400px;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            label{
-                font-size: 12px;
-                font-weight: 600;
-            }
-            input{
-                margin: 10px 0px 0px 0px;
-                width: 300px;
-                height: 45px;
-                outline: none;
-                border: 1px solid gainsboro;
-                border-radius: 10px;
-                background-color: white;
-                color: grey; 
-                padding:20px;
-                gap:5px
+        .input-primary{
+            text-align: center;
+            .input-container{
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width:100%;
+                // align-items: center;
+                label{
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+                input{
+                    margin: 10px 0px 0px 0px;
+                    width: 100%;
+                    height: 45px;
+                    outline: none;
+                    border: 1px solid gainsboro;
+                    border-radius: 10px;
+                    background-color: white;
+                    color: grey; 
+                    padding:20px;
+                    gap:5px
+                }
             }
         }
         .login-button{
@@ -76,7 +84,7 @@
             align-items: center;
             justify-content: center;
             button{
-                width: 300px;
+                width: 100%;
                 height: 45px;
                 margin-top: 10px;
                 outline: none;
@@ -99,6 +107,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            font-size: 10px;
             justify-content: center;
             gap:5px
         }
@@ -106,4 +115,118 @@
 }
 input::placeholder{
     text-align: center;
+}
+@media screen and (max-width: 500px){
+    .left-container{
+        display: none;
+    } 
+    .right-container{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        overflow-y: auto;
+        justify-content: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        .header{
+            padding-top: 10%;
+            padding-bottom: 5%;
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 0% 10%;
+            border-bottom: 1px solid lightgrey;
+            span{
+                color: #061330;
+                margin-top:5%;
+                padding-bottom: 10px;
+            }
+        }
+        
+        .google-login{
+            display: flex;
+            justify-content: center;
+            margin: 0% 10%;
+            border-bottom: 1px solid lightgray;
+            margin-top: 5%;
+            padding-bottom: 5%;
+            button{
+                margin: 10px 0px;
+                width: 100%;
+                height: 40px;
+                outline: none;
+                border: 1px solid gainsboro;
+                border-radius: 30px;
+                background-color: white;
+                color: #061330;
+                font-size: 12px;
+                font-weight: 600;
+                &:hover{
+                    background-color: gainsboro;
+                    -webkit-transition: background-color 100ms linear;
+                    -ms-transition: background-color 100ms linear;
+                    transition: background-color 100ms linear;
+                }
+            }
+        }
+        .input-primary{
+            text-align: center;
+            margin: 0% 10%;
+            .input-container{
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width:100%;
+                // align-items: center;
+                label{
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+                input{
+                    margin: 10px 0px 0px 0px;
+                    width: 100%;
+                    height: 40px;
+                    outline: none;
+                    border: 1px solid gainsboro;
+                    border-radius: 10px;
+                    background-color: white;
+                    color: grey; 
+                    padding:15px;
+                    gap:5px
+                }
+            }
+        }
+        .login-button{
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0% 10%;
+            button{
+                height: 40px;
+                margin-top: 10px;
+                outline: none;
+                border: 1px solid gainsboro;
+                border-radius: 30px;
+                background-color: #061330;
+                color: white;
+                font-size: 13px;
+                font-weight: 600;
+                &:hover{
+                    background-color: grey;
+                    -webkit-transition: background-color 100ms linear;
+                    -ms-transition: background-color 100ms linear;
+                    transition: background-color 100ms linear;
+                }
+            }
+        }
+        .register{
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            justify-content: center;
+            gap:5px
+        }
+    } 
 }

@@ -20,7 +20,7 @@ const NavbarMenu = () => {
   return (
     <div className='parent'>
     <div className='navbar'>
-      <div className='logo'><LogoAppleAr size={60}/><span>Creative Code</span></div>
+      <div className='logo'><LogoAppleAr size={40}/><span>Creative Code</span></div>
       <div className='links'>
         <div className='core-link'><Link to='/profile' className='core-link-ds'>Profile</Link></div>
         <div className='core-link'><Link to='/stats' className='core-link-ds'>Stats</Link></div>
@@ -41,7 +41,7 @@ const NavbarMenu = () => {
     </div>
     <div className='tablet-navbar'>
     <div className='logo-tablet'>
-      <div className='logo'><LogoAppleAr size={30}/><span>Creative Code</span></div>
+      <div className='logo'><LogoAppleAr size={20}/><span>Creative Code</span></div>
     </div>
     <div className='links-tablet'>
       <Link className='link-tab' to='/profile'><PersonAccounts size={22}/></Link>
@@ -63,7 +63,7 @@ const NavbarMenu = () => {
     
     <div className='mobile-navbar'>
       <div className='logo-mobile'>
-      <div className='logo'><LogoAppleAr size={30}/><span>Creative Code</span></div>
+      <div className='logo'><LogoAppleAr size={20}/><span>Creative Code</span></div>
       </div>
       <div className='right-box'>
       <div className='routing-toggle'>

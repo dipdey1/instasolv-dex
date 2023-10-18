@@ -3,10 +3,12 @@ import { useAuth } from '../../Utils/AuthContext'
 import './DoubtBar.scss'
 import client_dex, { ACTIVE_DEX_COLLECTION_ID, DATABASE_ID_DEX } from '../../../appwriteConfigDex'
 import client_user, { DATABASE_ID_USER, STORAGE_BUCKET_ID, USER_DOUBTS_COLLECTION_ID, database_user, storage_user } from '../../../appwriteConfigUser'
+import { useDoubt } from '../../Utils/DoubtContext'
 
 const DoubtBar = () => {
-    const {activeDexID, acceptDoubt, doubtIdOnLoad} = useAuth()
+    const {activeDexID, doubtIdOnLoad} = useAuth()
     const [routingID, setRoutingID] = useState(null)
+    const {acceptDoubt}  = useDoubt()
     const [accepted, setAccepted] = useState(false)
     const [isFullTextVisible, setIsFullTextVisible] = useState(false);
     const [doubt, setDoubt] = useState({
@@ -71,7 +73,7 @@ const DoubtBar = () => {
 
   return (
     <>
-     {(routingID) && !accepted ? 
+     {/* {(routingID) && !accepted ? 
       <div className='doubt-card'>
         <div className='lg-flex'>
           <div className='image'>
@@ -96,7 +98,33 @@ const DoubtBar = () => {
               </div>
         </div>
       </div>
-       : null}
+       : null} */}
+       {(routingID) && !accepted ? 
+       <div className='doubt-card'>
+        <div className='lg-flex'>
+          <div className='image'>
+            <img src={doubtImage.href} alt="" />
+          </div>
+          <div className='info'>
+            <div className='chapter-subject'>
+                <div className='chapter'><span>{doubt.chapter}</span></div>
+                <div className='subject-solution-type'><span className='subject-name'>{doubt.subject}</span><span className='solution-type'>Live</span></div>
+            </div>
+            <div className='accept-pass'>
+                <div><button className='accept' onClick={() => acceptDoubt(routingID, doubt)}>Accept</button></div>
+                <div><button className='pass'>Pass</button></div>
+            </div>
+          </div>
+          <div className='description'>
+          <p className='description-text'>{truncatedText} {doubt.body.length > maxLength && (
+              <button onClick={toggleFullText} className='show-text'>
+              {isFullTextVisible ? 'Show Less' : 'Show More'}
+              </button>
+                )}</p> 
+         </div>
+        </div>
+      </div>
+      : null}
     </>
   )
 }

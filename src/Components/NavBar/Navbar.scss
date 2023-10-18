@@ -33,6 +33,7 @@
         margin-left: 10%;
         margin-right: 10%;
         transition: .5s ease-out;
+        padding: 0px;
         }
         @media screen and (min-width: 961.01px) and (max-width: 1300.0px) {
             margin-left: 2%;
@@ -49,19 +50,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100%;
+            height: 80%;
             border-right: 1px solid gray;
             color:#19A7CE;
-            gap: 10px
-            // .lg-logo{
-            //     font-size: 3.5em;
-            //     color: whitesmoke;
-            // }
-            // .lg-appname{
-            //     font-size: 1rem;
-            //     font-weight: 500;
-            //     color: whitesmoke;
-            // }
+            gap: 10px;
+        }
         }
         .links{
             flex: 1;
@@ -174,12 +167,10 @@
             }
         }
     }
-    
-}
  
 
 
-@media screen and (min-width: 500px) and (max-width: 961px){
+@media screen and (min-width: 501px) and (max-width: 961px){
     .mobile-navbar{
         display: none
     }
@@ -193,13 +184,16 @@
     .tablet-navbar{
         background-color: #141414;
         display: flex;
+        align-items:center;
         flex-direction: row;
+        padding: 0px;
         @media screen and (min-width: 500px) and (max-width: 961px){
-            height: 5vh;
+            height: vh;
             margin-top: 1%;
             margin-left: 10px;
             margin-right: 10px;
             border-radius: 30px;
+            padding: 0px;
             transition: .5s ease-out;
         }
         position: sticky;
@@ -211,8 +205,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-left: 10%;
             .logo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #19A7CE;
             span{
                 @media screen and (max-width: 749px) {
@@ -221,22 +217,26 @@
                 }
                 padding-left: 10px;
                 color: #19A7CE;
-                font-size: 1rem;
+                font-size: 10px;
                 font-weight: 600;
             }
             }
             
         }
         .links-tablet{
-            flex: 3;
-            display: flex;
+           flex: 3;
+           display: flex;
            gap:20px;
            justify-content: flex-end;
            margin-right: 30px;
+           align-items: center;
            .link-tab{
             color: #19A7CE;
             border-radius: 10px;
             padding: 3px 3px;
+            display: flex;
+            align-items: center;
+
             &:hover{
                 background-color:#1b1c1e;
                 box-shadow: #f8f8f8 0px 3px 8px;
@@ -262,8 +262,9 @@
                     border: none;
                     border-radius: 50%;
                     color: #061330;
-                    padding-bottom: 3px;
-                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     &:focus{
                         background-color: #E21818;
                     transition: .5s ease-out;
@@ -278,9 +279,9 @@
                     border: none;
                     border-radius: 50%;
                     font-weight: 500;
-                    padding-right: -2px;
-                    padding-bottom: 3px;
-                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     animation: pulse 2s infinite;
                     &:focus{
                     background-color: #146C94;
@@ -343,20 +344,21 @@
 }
 
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500.99px){
 .mobile-navbar{
         background-color: #141414;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin: 0px 5px;
-        border-radius: 30px;
+        margin: 0px;
         color: #19A7CE;
+        padding: 0px;
         .logo-mobile{
             margin-left: 10px;
             .logo{
                 span{
                     margin-left: 5px;
+                    font-size: 10px;
                 }
             }
         }
@@ -368,6 +370,7 @@
                 align-items: center;
                 justify-content: center;
                 margin-right: 10px;
+                padding: 0px;
                 .stop-routing{
                     outline: none;
                     height: 30px;
@@ -413,7 +416,7 @@
 .toggle-menu{
     .menu-container{
         position: absolute;
-        height: 40vh;
+        height: 60vh;
         width : 60px;
         right: 0%;
         margin-right: 10px;
@@ -424,10 +427,10 @@
         align-items: center;
         justify-content: center;
         background-color: #141414;
-        -moz-animation-duration: 500ms;
-        -webkit-animation-duration: 500ms;
-        -moz-animation-name: opencontainer;
-        -webkit-animation-name: opencontainer;
+        -moz-animation-duration: 200ms;
+        -webkit-animation-duration: 200ms;
+        -moz-animation-name: fadeIn;
+        -webkit-animation-name: fadeIn;
         -moz-animation-iteration-count: 1;
         -webkit-animation-iteration-count: 1;
         .mob-link{
@@ -542,12 +545,12 @@
      }
 
      to {
-        height: 40vh;
+        height: 60vh;
      }
 }
 @-webkit-keyframes closecontainer  {
     from {
-        height: 40vh;
+        height: 60vh;
      }
 
      to {
@@ -619,4 +622,4 @@
     100% {
         -webkit-box-shadow: 0 0 0 0 rgba(42, 137, 201, 0);
     }
-  }
+}

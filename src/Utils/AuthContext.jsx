@@ -16,13 +16,13 @@ export const AuthProvider = ({children}) => {
     const [doubtIdOnLoad, setdoubtIdOnLoad] = useState(null)
     const [activeDexID, setActiveDexID] = useState('')
     const [routingStatus, setRoutingStatus] = useState(null)
-    const [ongoingDoubtObject, setOngoingDoubtObject] = useState(null)
+    // const [ongoingDoubtObject, setOngoingDoubtObject] = useState(null)
+    // const [zegoObject, setZegoObject] = useState({})
     const navigate = useNavigate()
 
 
     useEffect(() => {
         getUserOnLoad()
-        
     },[])
     const getUserOnLoad = async () => {
         try {
@@ -133,68 +133,96 @@ export const AuthProvider = ({children}) => {
         setRoutingStatus(false)
     }
 
-    const acceptDoubt = async(doubtId,doubt) => {
-        let dexDoubtPayload = { 
-            studentUserID: doubt.userId,
-            dexUserID: user.$id,
-            subject: doubt.subject,
-            chapter: doubt.chapter,
-            solutionType: doubt.solutionType,
-            doubtID: doubt.$id,
-            studentName: doubt.name,
-            dexName: user.name,
-            status: 'accepted',
-            pictureID: doubt.pictureID
-        }
-        let acceptancePayload = {
-            'status' : 'accepted', 
-            'dexId': user.$id,
-            'dexEmail': user.email,
-            'dexName': user.name}
-        let updatePayload = {'solvingStatus': true}
-        await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtId, acceptancePayload)
-        await database_dex.updateDocument(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID, activeDexID, updatePayload)
+    // const acceptDoubt = async(doubtId,doubt) => {
+    //     try {
+            
+    //     let dexDoubtPayload = { 
+    //         studentUserID: doubt.userId,
+    //         dexUserID: user.$id,
+    //         subject: doubt.subject,
+    //         chapter: doubt.chapter,
+    //         solutionType: doubt.solutionType,
+    //         doubtID: doubt.$id,
+    //         studentName: doubt.name,
+    //         dexName: user.name,
+    //         status: 'accepted',
+    //         pictureID: doubt.pictureID
+    //     }
+    //     let acceptancePayload = {
+    //         'status' : 'accepted', 
+    //         'dexId': user.$id,
+    //         'dexEmail': user.email,
+    //         'dexName': user.name}
+    //     let updatePayload = {'solvingStatus': true}
+    //     await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtId, acceptancePayload)
+    //     await database_dex.updateDocument(DATABASE_ID_DEX, ACTIVE_DEX_COLLECTION_ID, activeDexID, updatePayload)
 
-        let response = await database_dex.createDocument(DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID, ID.unique(),dexDoubtPayload)
-        let doubtImage = storage_user.getFilePreview(STORAGE_BUCKET_ID, response.pictureID)
-        const ongoingDoubtObject = {
-            info: response,
-            image: doubtImage
-        }
-        setOngoingDoubtObject(ongoingDoubtObject)
-    }
+    //     let response = await database_dex.createDocument(DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID, ID.unique(),dexDoubtPayload)
+    //     let doubtImage = storage_user.getFilePreview(STORAGE_BUCKET_ID, response.pictureID)
+    //     const ongoingDoubtObject = {
+    //         info: response,
+    //         image: doubtImage
+    //     }
+    //     setOngoingDoubtObject(ongoingDoubtObject)
+    //     setZegoObject({
+    //         roomID: doubt.$id,
+    //         userID: user.$id,
+    //         username: user.name
+    //     })
+    //     navigate(`/room/${doubt.$id}`)
+    //     } catch (error) {
+    //         console.log(error.message);
+    //     }
+    // }
     const inactivity = () => {
         setRoutingStatus(false)
     }
 
-    const getOngoingDoubtOnLoad = async () => {
-        let response = await database_dex.listDocuments(DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID,[Query.equal('dexUserID',user.$id), Query.equal('status','accepted')])
-        if(response.documents.length !== 0){
-            let doubtImage = await storage_user.getFilePreview(STORAGE_BUCKET_ID, response.documents[0].pictureID)
-        const ongoingDoubtObject = {
-            info: response.documents[0],
-            image: doubtImage
-        }
-        setOngoingDoubtObject(ongoingDoubtObject)
-        console.log(ongoingDoubtObject)
-        }else{
-            setOngoingDoubtObject(null)
-        }
-        
-    }
+    // const getOngoingDoubtOnLoad = async () => {
+    //     try {
+    //     let response = await database_dex.listDocuments(DATABASE_ID_DEX, DEX_DOUBTS_COLLECTION_ID,[Query.equal('dexUserID',user.$id), Query.equal('status','accepted')])
+    //     console.log(response)
+    //     if(response.documents.length !== 0){
+    //         let doubtImage = storage_user.getFilePreview(STORAGE_BUCKET_ID, response.documents[0].pictureID)
+    //             const ongoingDoubtObject = {
+    //             info: response.documents[0],
+    //             image: doubtImage
+    //             }
+    //         setOngoingDoubtObject(ongoingDoubtObject)
+    //     }else{
+    //         setOngoingDoubtObject(null)
+    //     }
+    //     } catch (error) {
+            
+    //     }
+    // }
 
-    const handleEndDoubt = async (doubtID, dexDocumentID) => {
-        let responseOne = await database_dex.updateDocument(DATABASE_ID_DEX,DEX_DOUBTS_COLLECTION_ID, dexDocumentID, {status: 'Solved'})
-        let responseTwo = await database_dex.updateDocument(DATABASE_ID_DEX,ACTIVE_DEX_COLLECTION_ID, activeDexID, {'solvingStatus' : false})
-        let responseThree = await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtID, {status: 'Solved'})
-        setOngoingDoubtObject(null)
-    }   
+    // const handleJoinDoubtBack = (roomID, userID, name) => {
+    //     setZegoObject({
+    //         roomID: roomID,
+    //         userID: userID,
+    //         username: name
+    //     })
+    //     navigate(`/room/${roomID}`)
+    // }
+
+    // const handleEndDoubt = async (doubtID, dexDocumentID) => {
+    //     setOngoingDoubtObject(null)
+    //     setZegoObject({})
+    //     let responseOne = await database_dex.updateDocument(DATABASE_ID_DEX,DEX_DOUBTS_COLLECTION_ID, dexDocumentID, {status: 'Solved'})
+    //     let responseTwo = await database_dex.updateDocument(DATABASE_ID_DEX,ACTIVE_DEX_COLLECTION_ID, activeDexID, {'solvingStatus' : false})
+    //     let responseThree = await database_user.updateDocument(DATABASE_ID_USER, USER_DOUBTS_COLLECTION_ID, doubtID, {status: 'Solved'})
+    //     navigate("/home")
+    // }   
 
     const contextData ={
         user,handleLogin,handleLogout, handleRegister,
         buttonSpin,error,activeDexID,routingStatus, handleRoutingON, 
-        handleRoutingOFF, acceptDoubt,doubtIdOnLoad, inactivity,getOngoingDoubtOnLoad,
-        ongoingDoubtObject,handleEndDoubt
+        handleRoutingOFF
+        // , acceptDoubt
+        ,doubtIdOnLoad, inactivity,
+        // getOngoingDoubtOnLoad,
+        // ongoingDoubtObject,handleEndDoubt,zegoObject,handleJoinDoubtBack
     }
 
 

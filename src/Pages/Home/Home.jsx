@@ -1,13 +1,13 @@
+import { useEffect } from "react"
 import DoubtBar from "../../Components/DoubtBar/DoubtBar"
 import NavbarMenu from "../../Components/NavBar/Navbar"
 import Sidebar from "../../Components/SideBar/Sidebar"
-import { useAuth } from "../../Utils/AuthContext"
 import './Home.scss'
 
 
 const Home = () => {
 
-  const {ongoingDoubtObject} = useAuth()
+  useEffect
 
   return (
     <div className="body">
